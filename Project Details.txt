@@ -1,0 +1,67 @@
+This documentation is created as of 23rd November 2025.
+
+This project skeleton demonstrates:
+
+1) Signals:
+
+SignalStoreService with counter, items, set/update/delete.
+
+2) HTTP services returning Observables:
+
+ApiService with of(...).pipe(delay()).
+
+3) Reactive forms:
+
+ReactiveFormDemoComponent using FormBuilder, validators.
+
+4) Template-driven forms (ngForm):
+
+LoginComponent with ngForm, ngModel, template refs.
+
+5) New control flow:
+
+@if, @else, @for, @switch, @empty in several templates.
+
+6) Classic structural directives:
+
+*ngFor + trackBy, *ngIf with else, template refs.
+
+7) Async pipe:
+
+items$ | async, user$ | async, loading$ | async, etc.
+
+8) Subjects:
+
+Subject, BehaviorSubject, ReplaySubject in SignalStoreService.
+
+9) RxJS operators:
+
+debounceTime, delay, switchMap, concatMap, mergeMap (flatMap), exhaustMap.
+
+10) Events:
+
+(click), (keyup), (change), (blur), (mouseover), drag/drop events, (ngSubmit) etc.
+
+11) Lazy-loaded modules & routing + guard:
+
+AuthModule, DashboardModule, DataModule loaded via loadChildren with AuthGuard.
+
+12) NgRx:
+
+Feature state with primitive (globalCounter) and object (items) + Effects for API loading + loading/error state.
+
+13) Custom pipes:
+
+HighlightPipe, RoleListPipe.
+
+14) HTTP interceptor:
+
+AuthInterceptor adding Authorization header based on MSAL mock.
+
+15) MSAL-like auth + authorization:
+
+MsalMockService with roles and token.
+
+AuthGuard checking authentication.
+
+AuthStatusComponent showing roles and using pipe.

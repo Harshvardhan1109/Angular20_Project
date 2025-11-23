@@ -1,0 +1,51 @@
+# 1. Create app (no standalone root, SCSS, routing)
+ng new advanced-ng20-demo \
+  --routing \
+  --style=scss \
+  --standalone=false \
+  --skip-tests
+
+cd advanced-ng20-demo
+
+# 2. Core + Shared modules
+ng g module core
+ng g module shared
+
+# 3. Feature modules (lazy-loaded)
+ng g module features/auth --route auth --module app-routing
+ng g module features/dashboard --route dashboard --module app-routing
+ng g module features/data --route data --module app-routing
+
+# 4. Components inside feature modules
+ng g component features/auth/components/login --module features/auth/auth
+ng g component features/auth/components/auth-status --module features/auth/auth
+
+ng g component features/dashboard/components/dashboard-home --module features/dashboard/dashboard
+ng g component features/dashboard/components/reactive-form-demo --module features/dashboard/dashboard
+ng g component features/dashboard/components/template-form-demo --module features/dashboard/dashboard
+
+ng g component features/data/components/data-list --module features/data/data
+ng g component features/data/components/data-detail --module features/data/data
+
+# 5. Shared components / pipes / services
+ng g component shared/components/event-demo-standalone --standalone --skip-tests
+ng g pipe shared/pipes/highlight
+ng g pipe shared/pipes/role-list
+ng g service shared/services/signal-store
+
+# 6. Core services / guards / interceptors
+ng g service core/services/msal-mock
+ng g service core/services/api
+ng g guard core/guards/auth --implements CanActivate
+ng g interceptor core/interceptors/auth
+
+# 7. NgRx setup
+ng add @ngrx/store
+ng add @ngrx/effects
+ng add @ngrx/store-devtools
+
+# Feature store for data module
+ng g feature features/data/state/data --module features/data/data
+
+# 8. (Optional) A simple root component for layout already exists: AppComponent
+#   We keep it NON-standalone; the ONLY standalone we use is EventDemoStandaloneComponent.
