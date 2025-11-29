@@ -1,0 +1,16 @@
+--Prerequisites:
+npm install -g @angular/cli@17
+
+
+
+--RUN Below commands after the project is created
+
+--RXJS:
+npm install rxjs@7.8
+
+--NGRX:
+ng add @ngrx/store@17
+ng add @ngrx/effects@17
+ng add @ngrx/router-store@17
+ng add @ngrx/entity@17
+ng add @ngrx/store-devtools@17
