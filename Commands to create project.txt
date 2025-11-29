@@ -45,7 +45,12 @@ ng add @ngrx/effects
 ng add @ngrx/store-devtools
 
 # Feature store for data module
-ng g feature features/data/state/data --module features/data/data
+//ng g feature features/data/state/data --module features/data/data
+
+ng g class features/data/state/data --type=action
+ng g class features/data/state/data --type=reducer
+ng g class features/data/state/data --type=selector
+ng g class features/data/state/data --type=effects
 
 # 8. (Optional) A simple root component for layout already exists: AppComponent
 #   We keep it NON-standalone; the ONLY standalone we use is EventDemoStandaloneComponent.
