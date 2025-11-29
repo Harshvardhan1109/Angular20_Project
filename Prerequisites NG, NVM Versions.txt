@@ -1,9 +1,13 @@
---Prerequisites:
+As of 28th November 2025:
+
+
+A] Prerequisites:
 npm install -g @angular/cli@17
 
+Download Node: v18
 
 
---RUN Below commands after the project is created
+B]RUN Below commands after the project is created
 
 --RXJS:
 npm install rxjs@7.8

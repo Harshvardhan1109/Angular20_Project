@@ -7,50 +7,78 @@ ng new advanced-ng20-demo \
 
 cd advanced-ng20-demo
 
-# 2. Core + Shared modules
+# Core (interceptors, guards, auth service, etc.)
 ng g module core
+
+# Shared (pipes, shared components)
 ng g module shared
 
-# 3. Feature modules (lazy-loaded)
-ng g module features/auth --route auth --module app-routing
-ng g module features/dashboard --route dashboard --module app-routing
-ng g module features/data --route data --module app-routing
+# Dashboard: signals, subjects, new control flow, RxJS demos
+ng g module features/dashboard --routing
 
-# 4. Components inside feature modules
-ng g component features/auth/components/login --module features/auth/auth
-ng g component features/auth/components/auth-status --module features/auth/auth
+# Forms: reactive + template-driven
+ng g module features/forms --routing
 
-ng g component features/dashboard/components/dashboard-home --module features/dashboard/dashboard
-ng g component features/dashboard/components/reactive-form-demo --module features/dashboard/dashboard
-ng g component features/dashboard/components/template-form-demo --module features/dashboard/dashboard
+# NgRx demo module
+ng g module features/ngrx-demo --routing
 
-ng g component features/data/components/data-list --module features/data/data
-ng g component features/data/components/data-detail --module features/data/data
+# Keep AppComponent as module-based root component (already created)
+# Generate one standalone component (ONLY ONE)
+ng g component shared/standalone-profile --standalone=true --skip-tests=true --style=scss
 
-# 5. Shared components / pipes / services
-ng g component shared/components/event-demo-standalone --standalone --skip-tests
-ng g pipe shared/pipes/highlight
-ng g pipe shared/pipes/role-list
-ng g service shared/services/signal-store
+#Dashboard components
 
-# 6. Core services / guards / interceptors
-ng g service core/services/msal-mock
-ng g service core/services/api
-ng g guard core/guards/auth --implements CanActivate
-ng g interceptor core/interceptors/auth
+ng g component features/dashboard/components/signals-demo --module=features/dashboard/dashboard --skip-tests=true --style=scss
+ng g component features/dashboard/components/subjects-demo --module=features/dashboard/dashboard --skip-tests=true --style=scss
+ng g component features/dashboard/components/rxjs-operators-demo --module=features/dashboard/dashboard --skip-tests=true --style=scss
 
-# 7. NgRx setup
-ng add @ngrx/store
-ng add @ngrx/effects
-ng add @ngrx/store-devtools
+#Forms components
 
-# Feature store for data module
-//ng g feature features/data/state/data --module features/data/data
+ng g component features/forms/components/reactive-form-demo --module=features/forms/forms --skip-tests=true --style=scss
+ng g component features/forms/components/template-form-demo --module=features/forms/forms --skip-tests=true --style=scss
 
-ng g class features/data/state/data --type=action
-ng g class features/data/state/data --type=reducer
-ng g class features/data/state/data --type=selector
-ng g class features/data/state/data --type=effects
+#NGRX demo components
 
-# 8. (Optional) A simple root component for layout already exists: AppComponent
-#   We keep it NON-standalone; the ONLY standalone we use is EventDemoStandaloneComponent.
+ng g component features/ngrx-demo/components/ngrx-todos --module=features/ngrx-demo/ngrx-demo --skip-tests=true --style=scss
+
+#Auth visual component (to show MSAL-ish I/O)
+
+ng g component core/components/auth-panel --module=core/core --skip-tests=true --style=scss
+
+#4. Generate services, interceptor, guard, pipes, NgRx files
+
+#Services
+
+ng g service core/services/msal-facade --skip-tests=true
+ng g service core/services/api --skip-tests=true
+ng g service features/dashboard/services/dashboard-data --skip-tests=true
+
+
+#Interceptor & Guard
+
+ng g service core/services/msal-facade --skip-tests=true
+ng g service core/services/api --skip-tests=true
+ng g service features/dashboard/services/dashboard-data --skip-tests=true
+
+
+#Custom Pipes
+
+ng g pipe shared/pipes/truncate --skip-tests=true
+ng g pipe shared/pipes/status-filter --skip-tests=true
+
+#NgRx (manual files – no schematic assumed)
+#Create manually under src/app/features/ngrx-demo/store/:
+
+ng g class todos --type=actions
+todos.actions.ts
+
+ng g class todos --type=reducer
+todos.reducer.ts
+
+ng g class todos --type=selectors
+todos.selectors.ts
+
+ng g class todos --type=effects
+todos.effects.ts
+
+
