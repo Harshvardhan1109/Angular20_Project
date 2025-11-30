@@ -10,6 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { AuthPanelComponent } from './core/components/auth-panel/auth-panel.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AuthPanelComponent } from './core/components/auth-panel/auth-panel.comp
     CoreModule,
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({ maxAge: 25 })
+    StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    HttpClientModule
   ],
   bootstrap: [AppComponent],
 })

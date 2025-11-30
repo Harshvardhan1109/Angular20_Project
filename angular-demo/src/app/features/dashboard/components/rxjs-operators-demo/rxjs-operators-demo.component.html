@@ -4,7 +4,7 @@
   <input
     type="text"
     placeholder="Type to search (debounce + switchMap)"
-    (input)="onSearch($any($event.target).value)"
+    (input)="onSearchInput($event)"
   />
 
   <h3>Results (*ngFor + async)</h3>

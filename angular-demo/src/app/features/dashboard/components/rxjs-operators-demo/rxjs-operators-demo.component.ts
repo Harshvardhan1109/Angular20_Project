@@ -58,8 +58,13 @@ export class RxjsOperatorsDemoComponent implements OnDestroy {
     this.onExhaustClick = () => click$.next('exhaust');
   }
 
-  onSearch(term: string): void {
-    this.searchInput$.next(term);
+  onSearchInput(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
+    this.onSearch(value);
+  }
+
+  onSearch(value: string): void {
+    this.searchInput$.next(value);
   }
 
   onMergeClick!: () => void;

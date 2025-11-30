@@ -1,0 +1,23 @@
+<section class="dashboard">
+  <h2>Dashboard</h2>
+  <p>Select a demo section:</p>
+
+  <nav class="dashboard-nav">
+    <button (click)="goToSignals($event)">
+      Signals Demo
+    </button>
+
+    <button (click)="goToSubjects($event)">
+      Subjects Demo
+    </button>
+
+    <button (click)="goToRxjs($event)">
+      RxJS Operators Demo
+    </button>
+  </nav>
+
+  <section class="dashboard-content">
+    <!-- Child routes for /dashboard/signals, /dashboard/subjects, /dashboard/rxjs -->
+    <router-outlet></router-outlet>
+  </section>
+</section>
