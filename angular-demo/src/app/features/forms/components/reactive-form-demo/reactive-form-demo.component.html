@@ -1,1 +1,27 @@
-<p>reactive-form-demo works!</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Name</label>
+    <input formControlName="name" (input)="0" />
+    @if (submitted && f.name.invalid) {
+      <small>Name is required</small>
+    }
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input formControlName="email" />
+    @if (submitted && f.email.invalid) {
+      <small>Valid email required</small>
+    }
+  </div>
+
+  <div>
+    <label>Age</label>
+    <input type="number" formControlName="age" />
+    @if (f.age.errors?.['min']) {
+      <small>Min age 18</small>
+    }
+  </div>
+
+  <button type="submit">Submit</button>
+</form>

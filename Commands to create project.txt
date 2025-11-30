@@ -10,6 +10,10 @@ cd advanced-ng20-demo
 # Core (interceptors, guards, auth service, etc.)
 ng g module core
 
+#Reducers:
+
+ng g class reducers/index
+
 # Shared (pipes, shared components)
 ng g module shared
 

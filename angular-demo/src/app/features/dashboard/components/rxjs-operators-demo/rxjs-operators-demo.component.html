@@ -1,1 +1,32 @@
-<p>rxjs-operators-demo works!</p>
+<section>
+  <h2>RxJS Operators Demo</h2>
+
+  <input
+    type="text"
+    placeholder="Type to search (debounce + switchMap)"
+    (input)="onSearch($any($event.target).value)"
+  />
+
+  <h3>Results (*ngFor + async)</h3>
+  <ul>
+    <li *ngFor="let item of (searchResults$ | async) ?? []">
+      {{ item }}
+    </li>
+  </ul>
+
+  <hr />
+
+  <h3>mergeMap / concatMap / exhaustMap</h3>
+  <button (click)="onMergeClick()">Trigger mergeMap flow</button>
+  <button (click)="onConcatClick()">Trigger concatMap flow</button>
+  <button (click)="onExhaustClick()">Trigger exhaustMap flow</button>
+
+  <div>
+    <h4>Logs</h4>
+    <ul>
+      <li *ngFor="let log of logs; trackBy: trackByIndex">
+        {{ log }}
+      </li>
+    </ul>
+  </div>
+</section>

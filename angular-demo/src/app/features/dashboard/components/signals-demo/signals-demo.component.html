@@ -1,1 +1,64 @@
-<p>signals-demo works!</p>
+<section class="signals">
+  <h2>Signals Demo</h2>
+
+  <!-- @if / @else -->
+  @if (counter() === 0) {
+    <p>Counter is <strong>zero</strong>.</p>
+  } @else {
+    <p>Counter value: {{ counter() }}</p>
+  }
+
+  <button (click)="increment()">Increment</button>
+  <button (click)="reset()">Reset</button>
+
+  <hr />
+
+  <h3>User (signal of object)</h3>
+  <p>Name: {{ user().name }} | Role: {{ user().role }}</p>
+
+  <input
+    type="text"
+    placeholder="Change name"
+    #nameInput
+    (keyup)="patchUserName(nameInput.value)"
+  />
+  <button (click)="patchUserName(nameInput.value)">Update Name</button>
+  <button (click)="setUserAdmin()">Set Admin</button>
+
+  <hr />
+
+  <h3>Todos (signals array)</h3>
+  < form
+    #todoForm="ngForm"
+    (ngSubmit)="addTodo(todoTitle.value); todoForm.resetForm()"
+  >
+    <input
+      type="text"
+      name="title"
+      ngModel
+      #todoTitle="ngModel"
+      required
+      placeholder="Todo title"
+    />
+    <button type="submit" [disabled]="todoForm.invalid">
+      Add Todo
+    </button>
+  </form>
+
+  <p>Completed: {{ completedCount() }}</p>
+
+  <!-- @for / @empty / trackBy -->
+  @for (todo of todos(); track trackTodo; let i = $index) {
+    <div class="todo">
+      <input
+        type="checkbox"
+        [checked]="todo.completed"
+        (change)="toggleTodo(todo.id)"
+      />
+      <span [class.completed]="todo.completed">{{ i + 1 }}. {{ todo.title }}</span>
+      <button (click)="deleteTodo(todo.id)">Delete</button>
+    </div>
+  } @empty {
+    <p>No todos yet.</p>
+  }
+</section>

@@ -1,1 +1,10 @@
-<p>auth-panel works!</p>
+<div class="auth-panel">
+  @if (user) {
+    <p>Logged in as {{ user.name }}</p>
+    <p>Roles: {{ user.roles.join(', ') }}</p>
+    <button (click)="onLogoutClick()">Logout</button>
+  } @else {
+    <p>You are not logged in.</p>
+    <button (click)="onLoginClick()">Login</button>
+  }
+</div>

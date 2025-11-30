@@ -1,1 +1,28 @@
-<p>ngrx-todos works!</p>
+<section>
+  <h2>NgRx Todos</h2>
+
+  <div>
+    <input #todoTitle type="text" placeholder="New todo..." />
+    <button (click)="addSimpleTodo(todoTitle)">Add (value type)</button>
+    <button (click)="addObjectTodo()">Add object type</button>
+  </div>
+
+  @if (loading$ | async; as loading) {
+    <p>Loading...</p>
+  } @else {
+
+    @if (error$ | async; as error) {
+      <p class="error">Error: {{ error }}</p>
+    }
+
+    @if (todos$ | async; as todos) {
+      @for (todo of todos; track todo.id) {
+        <div>
+          <span>{{ todo.title }}</span>
+        </div>
+      } @empty {
+        <p>No todos loaded.</p>
+      }
+    }
+  }
+</section>

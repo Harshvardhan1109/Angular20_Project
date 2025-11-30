@@ -1,1 +1,38 @@
-<p>subjects-demo works!</p>
+<section>
+  <h2>Subjects Demo</h2>
+
+  <div>
+    <button (click)="setFilter('all')">All</button>
+    <button (click)="setFilter('active')">Active</button>
+    <button (click)="setFilter('completed')">Completed</button>
+  </div>
+
+  <p>Current filter (BehaviorSubject + async): {{ currentFilter$ | async }}</p>
+
+  <!-- @switch -->
+  @switch (currentFilter$ | async) {
+    @case ('all') {
+      <p>Showing all items.</p>
+    }
+    @case ('active') {
+      <p>Showing active items.</p>
+    }
+    @case ('completed') {
+      <p>Showing completed items.</p>
+    }
+    @default {
+      <p>Unknown filter.</p>
+    }
+  }
+
+  <hr />
+
+  <button (click)="emitClick('primary-btn')">Click Primary</button>
+  <button (click)="emitClick('secondary-btn')">Click Secondary</button>
+
+  <h3>Logs (ReplaySubject)</h3>
+  <div *ngIf="logs$ | async as log">
+    <!-- logs$ emits one by one; for multi logs you’d maintain array in component -->
+    <p>Last log: {{ log }}</p>
+  </div>
+</section>

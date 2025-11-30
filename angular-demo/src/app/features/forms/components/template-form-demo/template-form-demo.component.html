@@ -1,1 +1,23 @@
-<p>template-form-demo works!</p>
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <div>
+    <label>Username</label>
+    <input name="username" [(ngModel)]="model.username" required />
+  </div>
+
+  <div>
+    <label>Country</label>
+    <select
+      name="country"
+      [(ngModel)]="model.country"
+      (change)="onCountryChange(model.country)"
+    >
+      <option value="IN">India</option>
+      <option value="US">USA</option>
+      <option value="UK">UK</option>
+    </select>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+</form>
+
+<pre>{{ model | json }}</pre>
